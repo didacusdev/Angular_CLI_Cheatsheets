@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular CLI - Cheat Sheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos personalizados para scrollbars usando sintaxis CSS estándar */
+        
+        /* Scrollbar del body */
+        body {
+            scrollbar-width: thin;
+            scrollbar-color: #dc2626 #1f2937;
+        }
+        
+        /* Scrollbar del sidebar */
+        #sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #ef4444 #374151;
+        }
+        
+        /* Scrollbar de las subcategorías desplegadas */
+        .subcategories {
+            scrollbar-width: thin;
+            scrollbar-color: #f87171 #4b5563;
+        }
+        
+        /* Compatibilidad con navegadores webkit (Chrome, Safari, Edge) */
+        body::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        body::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        
+        body::-webkit-scrollbar-thumb {
+            background: #dc2626;
+            border-radius: 4px;
+        }
+        
+        body::-webkit-scrollbar-thumb:hover {
+            background: #ef4444;
+        }
+        
+        #sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        #sidebar::-webkit-scrollbar-track {
+            background: #374151;
+        }
+        
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #ef4444;
+            border-radius: 3px;
+        }
+        
+        #sidebar::-webkit-scrollbar-thumb:hover {
+            background: #f87171;
+        }
+        
+        .subcategories::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .subcategories::-webkit-scrollbar-track {
+            background: #4b5563;
+        }
+        
+        .subcategories::-webkit-scrollbar-thumb {
+            background: #f87171;
+            border-radius: 2px;
+        }
+        
+        .subcategories::-webkit-scrollbar-thumb:hover {
+            background: #fca5a5;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 min-h-screen text-gray-100">
+    <!-- Toggle Sidebar Button (Mobile) -->
+    <button id="sidebarToggle" class="fixed top-4 left-4 z-50 lg:hidden bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg shadow-lg transition-colors">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapse Sidebar Button (Desktop) -->
+    <button id="sidebarCollapse" class="fixed top-4 left-4 z-50 hidden lg:block bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg shadow-lg transition-all duration-300">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-gray-800 border-r border-gray-700 transform -translate-x-full lg:translate-x-0 transition-all duration-300 z-40 overflow-y-auto">
+        <div class="p-6 w-full">
+            <h2 class="w-full text-center text-2xl font-bold text-red-400 mb-6">
+                Categorías
+            </h2>
+            <nav id="sidebarNav" class="mt-12 space-y-3">
+                <!-- Categories will be injected here by JavaScript -->
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Overlay for mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
+
+    <!-- Tooltip for hover details -->
+    <div id="commandTooltip" class="fixed bg-gray-900 border border-gray-700 rounded-lg p-4 shadow-xl z-50 hidden max-w-sm">
+        <p id="tooltipDescription" class="text-sm text-gray-300 mb-2"></p>
+        <code id="tooltipCommand" class="text-xs text-green-400 block"></code>
+    </div>
+
+    <div id="mainContent" class="container mx-auto px-4 py-8 max-w-[85rem]">
+        <div>
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-pink-500 bg-clip-text text-transparent">
+                Angular CLI Cheat Sheet
+            </h1>
+            <p class="text-gray-400 text-lg">Guía completa de comandos de Angular CLI</p>
+        </header>
+
+        <!-- Search Bar (Sticky) -->
+        <div class="sticky border-none rounded-b-md md:rounded top-0 z-20 bg-white/10 backdrop-blur-md py-4 mb-8 -mx-4 px-4">
+            <div class="relative pl-12 md:pl-0">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Buscar comandos..." 
+                    class="w-full px-6 py-4 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                <i class="fas fa-search absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-96 transition-transform duration-300 z-50">
+            <i class="fas fa-check-circle mr-2"></i>
+            <span>Copiado al portapapeles!</span>
+        </div>
+
+        <!-- Commands Grid -->
+        <div id="commandsContainer" class="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+            <!-- Commands will be injected here by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-16 text-center text-gray-500">
+            <p>Angular CLI Cheat Sheet - Creado con ❤️</p>
+            <p class="text-sm mt-2">Versión: Angular 21.0.3 | Actualizado: Diciembre 2025</p>
+        </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
