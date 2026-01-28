@@ -91,6 +91,7 @@ const angularCommands = [
         examples: [
           "ng g c my-component",
           "ng g c my-component --skip-tests",
+          "ng g c my-component --skip-tests --style=none",
           "ng g c pages/home --standalone",
           "ng g c features/users/user-list --skip-tests --standalone",
           "ng g c user --dry-run",
