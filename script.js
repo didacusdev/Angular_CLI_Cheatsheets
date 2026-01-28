@@ -90,63 +90,23 @@ const angularCommands = [
         shortForm: "ng g c [nombre]",
         examples: [
           "ng g c my-component",
+          "ng g c my-component --skip-tests",
           "ng g c pages/home --standalone",
+          "ng g c features/users/user-list --skip-tests --standalone",
           "ng g c user --dry-run",
-          "ng g c product --skip-tests",
-          "ng g c header --inline-style --inline-template"
+          "ng g c product --flat",
+          "ng g c header --inline-style --inline-template",
+          "ng g c button -t -s --skip-tests",
+          "ng g c admin/dashboard --change-detection=OnPush",
+          "ng g c shared/card --display-block",
+          "ng g c navbar --export --module=shared",
+          "ng g c ui/modal --view-encapsulation=None",
+          "ng g c pages/about --style=scss --prefix=app",
+          "ng g c components/form --no-standalone",
+          "ng g c widgets/chart --skip-import"
         ]
       },
-      {
-        name: "generate component (dry-run)",
-        short: "g c -d",
-        description: "Simula la creación de un componente sin escribir archivos",
-        longForm: "ng generate component [nombre] --dry-run",
-        shortForm: "ng g c [nombre] -d",
-        examples: ["ng g c my-component -d", "ng g c pages/about --dry-run"]
-      },
-      {
-        name: "generate component (standalone)",
-        short: "g c --standalone",
-        description: "Genera un componente standalone (sin NgModule)",
-        longForm: "ng generate component [nombre] --standalone",
-        shortForm: "ng g c [nombre] --standalone",
-        examples: [
-          "ng g c my-component --standalone",
-          "ng g c pages/home --standalone --skip-tests"
-        ]
-      },
-      {
-        name: "generate component (inline)",
-        short: "g c -t -s",
-        description: "Genera un componente con estilos y template inline",
-        longForm: "ng generate component [nombre] --inline-template --inline-style",
-        shortForm: "ng g c [nombre] -t -s",
-        examples: [
-          "ng g c button -t -s",
-          "ng g c alert --inline-template --inline-style"
-        ]
-      },
-      {
-        name: "generate component (flat)",
-        short: "g c --flat",
-        description: "Genera el componente sin crear una carpeta",
-        longForm: "ng generate component [nombre] --flat",
-        shortForm: "ng g c [nombre] --flat",
-        examples: ["ng g c app-header --flat", "ng g c footer --flat --skip-tests"]
-      },
-      {
-        name: "generate component (opciones avanzadas)",
-        short: "g c",
-        description: "Componente con múltiples opciones de configuración",
-        longForm: "ng generate component [nombre] [opciones]",
-        shortForm: "ng g c [nombre] [opciones]",
-        examples: [
-          "ng g c user --skip-tests --standalone",
-          "ng g c admin/dashboard --module=admin --export",
-          "ng g c shared/button --change-detection=OnPush",
-          "ng g c ui/card --display-block --view-encapsulation=None"
-        ]
-      },
+
       {
         name: "generate service",
         short: "g s",
@@ -155,25 +115,14 @@ const angularCommands = [
         shortForm: "ng g s [nombre]",
         examples: [
           "ng g s services/data",
-          "ng g s auth",
-          "ng g s user --skip-tests"
+          "ng g s auth --skip-tests",
+          "ng g s core/api/user --skip-tests",
+          "ng g s shared/logger --flat",
+          "ng g s api --flat --skip-tests",
+          "ng g s services/auth --dry-run",
+          "ng g s http --project=my-app",
+          "ng g s core/storage"
         ]
-      },
-      {
-        name: "generate service (dry-run)",
-        short: "g s -d",
-        description: "Simula la creación de un servicio sin escribir archivos",
-        longForm: "ng generate service [nombre] --dry-run",
-        shortForm: "ng g s [nombre] -d",
-        examples: ["ng g s api -d", "ng g s services/auth --dry-run"]
-      },
-      {
-        name: "generate service (flat)",
-        short: "g s --flat",
-        description: "Genera el servicio sin crear una carpeta",
-        longForm: "ng generate service [nombre] --flat",
-        shortForm: "ng g s [nombre] --flat",
-        examples: ["ng g s logger --flat", "ng g s api --flat --skip-tests"]
       },
       {
         name: "generate module",
@@ -184,27 +133,13 @@ const angularCommands = [
         examples: [
           "ng g m shared",
           "ng g m core --routing",
-          "ng g m admin --module=app"
+          "ng g m features/admin --routing",
+          "ng g m admin --module=app",
+          "ng g m pages/dashboard --flat",
+          "ng g m feature --routing --routing-scope=Child",
+          "ng g m shared -d",
+          "ng g m lazy-module --route=lazy --module=app"
         ]
-      },
-      {
-        name: "generate module (routing)",
-        short: "g m --routing",
-        description: "Genera un módulo con archivo de routing",
-        longForm: "ng generate module [nombre] --routing",
-        shortForm: "ng g m [nombre] --routing",
-        examples: [
-          "ng g m feature --routing",
-          "ng g m admin --routing --module=app"
-        ]
-      },
-      {
-        name: "generate module (dry-run)",
-        short: "g m -d",
-        description: "Simula la creación de un módulo sin escribir archivos",
-        longForm: "ng generate module [nombre] --dry-run",
-        shortForm: "ng g m [nombre] -d",
-        examples: ["ng g m shared -d", "ng g m core --dry-run --routing"]
       },
       {
         name: "generate directive",
@@ -214,27 +149,14 @@ const angularCommands = [
         shortForm: "ng g d [nombre]",
         examples: [
           "ng g d directives/highlight",
-          "ng g d custom-dir",
-          "ng g d tooltip --standalone"
-        ]
-      },
-      {
-        name: "generate directive (dry-run)",
-        short: "g d -d",
-        description: "Simula la creación de una directiva sin escribir archivos",
-        longForm: "ng generate directive [nombre] --dry-run",
-        shortForm: "ng g d [nombre] -d",
-        examples: ["ng g d highlight -d", "ng g d custom --dry-run"]
-      },
-      {
-        name: "generate directive (standalone)",
-        short: "g d --standalone",
-        description: "Genera una directiva standalone",
-        longForm: "ng generate directive [nombre] --standalone",
-        shortForm: "ng g d [nombre] --standalone",
-        examples: [
-          "ng g d highlight --standalone",
-          "ng g d tooltip --standalone --skip-tests"
+          "ng g d custom-dir --skip-tests",
+          "ng g d shared/tooltip --standalone",
+          "ng g d highlight --standalone --skip-tests",
+          "ng g d validators/email --flat",
+          "ng g d directives/auto-focus --export --module=shared",
+          "ng g d click-outside --skip-import",
+          "ng g d highlight -d",
+          "ng g d shared/directives/permission --prefix=app"
         ]
       },
       {
@@ -245,81 +167,48 @@ const angularCommands = [
         shortForm: "ng g p [nombre]",
         examples: [
           "ng g p pipes/custom",
-          "ng g p format-date",
-          "ng g p filter --standalone"
-        ]
-      },
-      {
-        name: "generate pipe (dry-run)",
-        short: "g p -d",
-        description: "Simula la creación de un pipe sin escribir archivos",
-        longForm: "ng generate pipe [nombre] --dry-run",
-        shortForm: "ng g p [nombre] -d",
-        examples: ["ng g p custom -d", "ng g p filter --dry-run"]
-      },
-      {
-        name: "generate pipe (standalone)",
-        short: "g p --standalone",
-        description: "Genera un pipe standalone",
-        longForm: "ng generate pipe [nombre] --standalone",
-        shortForm: "ng g p [nombre] --standalone",
-        examples: [
-          "ng g p currency --standalone",
-          "ng g p filter --standalone --skip-tests"
+          "ng g p format-date --skip-tests",
+          "ng g p shared/filter --standalone",
+          "ng g p currency --standalone --skip-tests",
+          "ng g p pipes/safe-html --flat",
+          "ng g p truncate --export --module=shared",
+          "ng g p custom-date --skip-import",
+          "ng g p filter -d",
+          "ng g p shared/pipes/highlight"
         ]
       },
       {
         name: "generate guard",
         short: "g g",
-        description: "Genera un nuevo guard de ruta (CanActivate por defecto)",
+        description: "Genera un nuevo guard de ruta (funcional por defecto en Angular 15+)",
         longForm: "ng generate guard [nombre]",
         shortForm: "ng g g [nombre]",
         examples: [
           "ng g g auth",
-          "ng g g guards/admin",
-          "ng g g can-load --functional"
-        ]
-      },
-      {
-        name: "generate guard (dry-run)",
-        short: "g g -d",
-        description: "Simula la creación de un guard sin escribir archivos",
-        longForm: "ng generate guard [nombre] --dry-run",
-        shortForm: "ng g g [nombre] -d",
-        examples: ["ng g g auth -d", "ng g g admin --dry-run"]
-      },
-      {
-        name: "generate guard (functional)",
-        short: "g g --functional",
-        description: "Genera un guard funcional (recomendado en Angular 15+)",
-        longForm: "ng generate guard [nombre] --functional",
-        shortForm: "ng g g [nombre] --functional",
-        examples: [
-          "ng g g auth --functional",
-          "ng g g admin --functional --skip-tests"
+          "ng g g guards/admin --skip-tests",
+          "ng g g can-load --functional",
+          "ng g g admin --functional --skip-tests",
+          "ng g g core/guards/role --flat",
+          "ng g g auth --implements=CanActivate,CanActivateChild",
+          "ng g g permission --implements=CanMatch",
+          "ng g g unsaved-changes --implements=CanDeactivate",
+          "ng g g auth -d"
         ]
       },
       {
         name: "generate interceptor",
         short: "g interceptor",
-        description: "Genera un nuevo interceptor HTTP",
+        description: "Genera un nuevo interceptor HTTP (funcional por defecto en Angular 15+)",
         longForm: "ng generate interceptor [nombre]",
         shortForm: "ng g interceptor [nombre]",
         examples: [
           "ng g interceptor auth",
-          "ng g interceptor interceptors/error",
-          "ng g interceptor jwt --functional"
-        ]
-      },
-      {
-        name: "generate interceptor (functional)",
-        short: "g interceptor --functional",
-        description: "Genera un interceptor funcional (recomendado en Angular 15+)",
-        longForm: "ng generate interceptor [nombre] --functional",
-        shortForm: "ng g interceptor [nombre] --functional",
-        examples: [
-          "ng g interceptor auth --functional",
-          "ng g interceptor logging --functional --skip-tests"
+          "ng g interceptor auth --skip-tests",
+          "ng g interceptor core/interceptors/error",
+          "ng g interceptor jwt --functional",
+          "ng g interceptor logging --functional --skip-tests",
+          "ng g interceptor http-error --flat",
+          "ng g interceptor token --project=my-app"
         ]
       },
       {
@@ -331,16 +220,12 @@ const angularCommands = [
         examples: [
           "ng g i models/user",
           "ng g i product",
-          "ng g i interfaces/api-response"
+          "ng g i core/interfaces/api-response",
+          "ng g i models/user model",
+          "ng g i shared/types/config data",
+          "ng g i user -d",
+          "ng g i models/dto/user-dto"
         ]
-      },
-      {
-        name: "generate interface (dry-run)",
-        short: "g i -d",
-        description: "Simula la creación de una interfaz sin escribir archivos",
-        longForm: "ng generate interface [nombre] --dry-run",
-        shortForm: "ng g i [nombre] -d",
-        examples: ["ng g i user -d", "ng g i product --dry-run"]
       },
       {
         name: "generate class",
@@ -350,17 +235,13 @@ const angularCommands = [
         shortForm: "ng g cl [nombre]",
         examples: [
           "ng g cl models/user",
+          "ng g cl models/user --skip-tests",
           "ng g cl utils/helper",
-          "ng g cl classes/validator --skip-tests"
+          "ng g cl core/classes/validator --skip-tests",
+          "ng g cl user --type=model",
+          "ng g cl helpers/string-helper --type=helper",
+          "ng g cl user -d"
         ]
-      },
-      {
-        name: "generate class (dry-run)",
-        short: "g cl -d",
-        description: "Simula la creación de una clase sin escribir archivos",
-        longForm: "ng generate class [nombre] --dry-run",
-        shortForm: "ng g cl [nombre] -d",
-        examples: ["ng g cl user -d", "ng g cl helper --dry-run"]
       },
       {
         name: "generate enum",
@@ -371,38 +252,26 @@ const angularCommands = [
         examples: [
           "ng g e enums/status",
           "ng g e user-role",
-          "ng g e enums/priority"
+          "ng g e core/enums/priority",
+          "ng g e status --type=enum",
+          "ng g e shared/enums/http-status",
+          "ng g e role -d"
         ]
-      },
-      {
-        name: "generate enum (dry-run)",
-        short: "g e -d",
-        description: "Simula la creación de un enum sin escribir archivos",
-        longForm: "ng generate enum [nombre] --dry-run",
-        shortForm: "ng g e [nombre] -d",
-        examples: ["ng g e status -d", "ng g e role --dry-run"]
       },
       {
         name: "generate resolver",
         short: "g r",
-        description: "Genera un nuevo resolver de ruta",
+        description: "Genera un nuevo resolver de ruta (funcional por defecto en Angular 15+)",
         longForm: "ng generate resolver [nombre]",
         shortForm: "ng g r [nombre]",
         examples: [
           "ng g r user",
-          "ng g r resolvers/data",
-          "ng g r product --functional"
-        ]
-      },
-      {
-        name: "generate resolver (functional)",
-        short: "g r --functional",
-        description: "Genera un resolver funcional (recomendado en Angular 15+)",
-        longForm: "ng generate resolver [nombre] --functional",
-        shortForm: "ng g r [nombre] --functional",
-        examples: [
-          "ng g r user --functional",
-          "ng g r data --functional --skip-tests"
+          "ng g r user --skip-tests",
+          "ng g r core/resolvers/data",
+          "ng g r product --functional",
+          "ng g r data --functional --skip-tests",
+          "ng g r user-details --flat",
+          "ng g r resolvers/product-list"
         ]
       },
       {
@@ -466,7 +335,7 @@ const angularCommands = [
         ]
       },
       {
-        name: "generate schematic (opciones globales)",
+        name: "generate (opciones globales)",
         short: "g",
         description: "Opciones comunes para todos los comandos generate",
         longForm: "ng generate [schematic] [opciones]",
@@ -477,7 +346,11 @@ const angularCommands = [
           "ng g m shared --flat",
           "ng g c header --project=admin",
           "ng g d highlight --export",
-          "ng g p filter --module=shared"
+          "ng g p filter --module=shared",
+          "ng g c pages/home/components/hero --skip-tests",
+          "ng g s core/services/auth/token --flat --skip-tests",
+          "ng g i models/dto/user-response model",
+          "ng g --help"
         ]
       }
     ]
@@ -929,7 +802,7 @@ function setupSidebarCollapse() {
   const sidebar = document.getElementById('sidebar');
   const icon = collapseBtn.querySelector('i');
 
-  let isCollapsed = false;
+  let isCollapsed = true;
 
   collapseBtn.addEventListener('click', () => {
     isCollapsed = !isCollapsed;
